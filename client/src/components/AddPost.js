@@ -5,24 +5,20 @@ const AddPost = ({ setShowAddPost }) => {
   const { addPost } = useContext(GlobalContext);
 
   const [title, setTitle] = useState();
-  const [text, setText] = useState();
+  const [body, setBody] = useState();
   const [topic, setTopic] = useState();
   const [tags, setTags] = useState();
   const [source, setSource] = useState();
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const date = new Date();
-    const id = Math.floor(Math.random() * 100000);
 
     const newPost = {
       title,
-      text,
+      body,
       topic,
       tags,
       source,
-      date,
-      id,
     };
 
     addPost(newPost);
@@ -46,7 +42,7 @@ const AddPost = ({ setShowAddPost }) => {
           <input
             type="text"
             placeholder="Enter text..."
-            onChange={(e) => setText(e.target.value)}
+            onChange={(e) => setBody(e.target.value)}
           />
         </div>
         <div className="form-control">
@@ -70,10 +66,10 @@ const AddPost = ({ setShowAddPost }) => {
           <input
             type="text"
             placeholder="Enter tags, separated by a comma"
-            onChange={(e) => setTags(e.target.value)}
+            onChange={(e) => setTags([e.target.value])}
           />
         </div>
-        <button className="btn">Add transaction</button>
+        <button className="btn">Add post</button>
       </form>
     </div>
   );

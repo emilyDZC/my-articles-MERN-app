@@ -1,29 +1,11 @@
 import React, { createContext, useReducer } from "react";
 import AppReducer from "./AppReducer";
+import axios from "axios";
 
 const initialState = {
-  posts: [
-    {
-      id: 1,
-      title: "Denisovans",
-      body:
-        "Interesting article about how, when and where the Denisovans may have overlapped and interbred with homo sapiens",
-      date: new Date(),
-      topic: "Evolution",
-      tags: ["evolution", "homo sapiens", "prehistory"],
-      source: "New Scientist",
-    },
-    {
-      id: 2,
-      title: "Novacene",
-      body:
-        "Next chapter of book, about climate change and whether we actually want the earth to cool",
-      date: new Date(),
-      topic: "Philosophy",
-      tags: ["philosophy", "environment", "climate", "evolution"],
-      source: "Novacene, by James Lovelock",
-    },
-  ],
+  posts: [],
+  error: null,
+  loading: true,
 };
 
 // Create context
@@ -34,22 +16,70 @@ export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
 
   // Actions
-  function deletePost(id) {
-    dispatch({
-      type: "DELETE_POST",
-      payload: id,
-    });
+  async function getPosts() {
+    try {
+      const res = await axios.get("/api/posts");
+
+      dispatch({
+        type: "GET_POSTS",
+        payload: res.data.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: "POST_ERROR",
+        payload: error.response.data.error,
+      });
+    }
   }
 
-  function addPost(post) {
-    dispatch({
-      type: "ADD_POST",
-      payload: post,
-    });
+  async function deletePost(id) {
+    try {
+      await axios.delete(`/api/posts/${id}`);
+
+      dispatch({
+        type: "DELETE_POST",
+        payload: id,
+      });
+    } catch (error) {
+      dispatch({
+        type: "POST_ERROR",
+        payload: error.response.data.error,
+      });
+    }
+  }
+
+  async function addPost(post) {
+    const config = {
+      header: {
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      const res = await axios.post("/api/posts", post, config);
+
+      dispatch({
+        type: "ADD_POST",
+        payload: res.data.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: "POST_ERROR",
+        payload: error.response.data.error,
+      });
+    }
   }
 
   return (
-    <GlobalContext.Provider value={{ posts: state.posts, deletePost, addPost }}>
+    <GlobalContext.Provider
+      value={{
+        posts: state.posts,
+        error: state.error,
+        loading: state.loading,
+        deletePost,
+        addPost,
+        getPosts,
+      }}
+    >
       {children}
     </GlobalContext.Provider>
   );
