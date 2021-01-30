@@ -78,19 +78,22 @@ label {
 }
 
 input[type="text"],
-input[type="number"] {
+input[type="number"],
+textarea {
   border: 1px solid #dedede;
   border-radius: 2px;
   display: block;
   font-size: 16px;
   padding: 10px;
   width: 100%;
+  font-family: "Lato", sans-serif;
 }
 
 .btn {
   cursor: pointer;
-  background-color: #9c88ff;
+  background-color: #c77fa3;
   box-shadow: var(--box-shadow);
+  border-radius: 0.15rem;
   color: #fff;
   border: 0;
   display: block;
@@ -98,6 +101,14 @@ input[type="number"] {
   margin: 10px 0 30px;
   padding: 10px;
   width: 100%;
+}
+
+button {
+  opacity: 0.3 !important;
+}
+
+button:hover {
+  opacity: 1 !important;
 }
 
 .btn:focus,
@@ -148,4 +159,10 @@ input[type="number"] {
 
 .list li:hover .delete-btn {
   opacity: 1;
+}
+
+/* Post */
+.post-date {
+  font-style: italic;
+  font-size: 0.8rem;
 }

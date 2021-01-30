@@ -38,9 +38,9 @@ const AddPost = ({ setShowAddPost }) => {
           />
         </div>
         <div className="form-control">
-          <label htmlFor="text">Text</label>
-          <input
-            type="text"
+          <label htmlFor="textarea">Text</label>
+          <textarea
+            rows={10}
             placeholder="Enter text..."
             onChange={(e) => setBody(e.target.value)}
           />
