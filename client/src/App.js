@@ -21,13 +21,16 @@ function App() {
 
   return (
     <GlobalProvider>
-      <Header />
-      <button onClick={() => setShowAddPost((current) => !current)}>
-        {showAddPost ? "Hide" : <AddButton />}
-      </button>
-      {showAddPost && <AddPost setShowAddPost={setShowAddPost} />}
-      <div className="container">
-        <Posts />
+      <div className="page-container">
+        <div className="sidebar"></div>
+        <div className="container">
+          <Header />
+          <button onClick={() => setShowAddPost((current) => !current)}>
+            {showAddPost ? "Hide" : <AddButton />}
+          </button>
+          {showAddPost && <AddPost setShowAddPost={setShowAddPost} />}
+          <Posts />
+        </div>
       </div>
     </GlobalProvider>
   );
