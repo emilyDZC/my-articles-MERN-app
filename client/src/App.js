@@ -3,8 +3,18 @@ import "./App.css";
 import Header from "./components/Header";
 import Posts from "./components/Posts";
 import AddPost from "./components/AddPost";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 
 import { GlobalContext, GlobalProvider } from "./context/GlobalState";
+
+const AddButton = () => {
+  return (
+    <div>
+      <FontAwesomeIcon icon={faPencilAlt} /> Add New Post
+    </div>
+  );
+};
 
 function App() {
   const [showAddPost, setShowAddPost] = useState(false);
@@ -13,7 +23,7 @@ function App() {
     <GlobalProvider>
       <Header />
       <button onClick={() => setShowAddPost((current) => !current)}>
-        {showAddPost ? "Hide" : "Add New Post"}
+        {showAddPost ? "Hide" : <AddButton />}
       </button>
       {showAddPost && <AddPost setShowAddPost={setShowAddPost} />}
       <div className="container">
