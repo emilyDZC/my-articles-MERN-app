@@ -66,7 +66,7 @@ const AddPost = ({ setShowAddPost }) => {
           <input
             type="text"
             placeholder="Enter tags, separated by a comma"
-            onChange={(e) => setTags([e.target.value])}
+            onChange={(e) => setTags(e.target.value.split(","))}
           />
         </div>
         <button className="btn">Add post</button>

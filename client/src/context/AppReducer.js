@@ -16,6 +16,11 @@ export default (state, action) => {
         ...state,
         posts: [action.payload, ...state.posts],
       };
+    // case "FILTER_POSTS":
+    //   return {
+    //     ...state,
+    //     posts: state.posts.filter((post) => post.tags.includes(action.payload)),
+    //   };
     case "POST_ERROR":
       return {
         ...state,

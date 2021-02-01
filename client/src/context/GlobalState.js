@@ -6,6 +6,7 @@ const initialState = {
   posts: [],
   error: null,
   loading: true,
+  topics: ["Environment", "Psychology"],
 };
 
 // Create context
@@ -69,15 +70,24 @@ export const GlobalProvider = ({ children }) => {
     }
   }
 
+  // function filterPosts(searchTerm) {
+  //   dispatch({
+  //     type: "FILTER_POSTS",
+  //     payload: searchTerm,
+  //   });
+  // }
+
   return (
     <GlobalContext.Provider
       value={{
         posts: state.posts,
         error: state.error,
         loading: state.loading,
+        topics: state.topics,
         deletePost,
         addPost,
         getPosts,
+        // filterPosts,
       }}
     >
       {children}

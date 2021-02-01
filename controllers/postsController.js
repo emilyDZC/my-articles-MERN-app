@@ -24,7 +24,7 @@ exports.getPosts = async (req, res, next) => {
 
 exports.addPost = async (req, res, next) => {
   try {
-    const { title, body, topic, source } = req.body;
+    const { title, body, topic, tags, source } = req.body;
 
     const post = await Post.create(req.body);
 

@@ -3,10 +3,10 @@ import "./App.css";
 import Header from "./components/Header";
 import Posts from "./components/Posts";
 import AddPost from "./components/AddPost";
+import Sidebar from "./components/Sidebar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
-
-import { GlobalContext, GlobalProvider } from "./context/GlobalState";
+import { GlobalProvider } from "./context/GlobalState";
 
 const AddButton = () => {
   return (
@@ -22,7 +22,7 @@ function App() {
   return (
     <GlobalProvider>
       <div className="page-container">
-        <div className="sidebar"></div>
+        <Sidebar />
         <div className="container">
           <Header />
           <button onClick={() => setShowAddPost((current) => !current)}>
