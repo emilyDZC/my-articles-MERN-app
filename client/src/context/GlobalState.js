@@ -7,6 +7,7 @@ const initialState = {
   error: null,
   loading: true,
   topics: ["Environment", "Psychology"],
+  searchText: "",
 };
 
 // Create context
@@ -70,12 +71,12 @@ export const GlobalProvider = ({ children }) => {
     }
   }
 
-  // function filterPosts(searchTerm) {
-  //   dispatch({
-  //     type: "FILTER_POSTS",
-  //     payload: searchTerm,
-  //   });
-  // }
+  function filterPosts(searchTerm) {
+    dispatch({
+      type: "FILTER_POSTS",
+      payload: searchTerm,
+    });
+  }
 
   return (
     <GlobalContext.Provider

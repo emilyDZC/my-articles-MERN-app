@@ -66,7 +66,11 @@ const AddPost = ({ setShowAddPost }) => {
           <input
             type="text"
             placeholder="Enter tags, separated by a comma"
-            onChange={(e) => setTags(e.target.value.split(","))}
+            onChange={(e) =>
+              setTags(
+                e.target.value.split(",").map((str) => str.trim().toLowerCase())
+              )
+            }
           />
         </div>
         <button className="btn">Add post</button>
