@@ -1,4 +1,5 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState } from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header";
 import Posts from "./components/Posts";
@@ -27,18 +28,20 @@ function App() {
 
   return (
     <GlobalProvider>
-      <div className="page-container">
-        <Sidebar />
-        <div className="container">
-          <Header />
-          <Searchbar handleSearch={(val) => handleSearch(val)} />
-          <button onClick={() => setShowAddPost((current) => !current)}>
-            {showAddPost ? "Hide" : <AddButton />}
-          </button>
-          {showAddPost && <AddPost setShowAddPost={setShowAddPost} />}
-          <Posts searchText={searchText} />
+      <Router>
+        <div className="page-container">
+          <Sidebar handleSearch={(val) => handleSearch(val)} />
+          <div className="container">
+            <Header />
+            <Searchbar handleSearch={(val) => handleSearch(val)} />
+            <button onClick={() => setShowAddPost((current) => !current)}>
+              {showAddPost ? "Hide" : <AddButton />}
+            </button>
+            {showAddPost && <AddPost setShowAddPost={setShowAddPost} />}
+            <Posts searchText={searchText} />
+          </div>
         </div>
-      </div>
+      </Router>
     </GlobalProvider>
   );
 }

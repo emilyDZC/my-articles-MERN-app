@@ -6,7 +6,7 @@ const initialState = {
   posts: [],
   error: null,
   loading: true,
-  topics: ["Environment", "Psychology"],
+  topics: [],
   searchText: "",
 };
 
@@ -71,11 +71,20 @@ export const GlobalProvider = ({ children }) => {
     }
   }
 
-  function filterPosts(searchTerm) {
-    dispatch({
-      type: "FILTER_POSTS",
-      payload: searchTerm,
-    });
+  async function getTopics() {
+    try {
+      const res = await axios.get("/api/posts");
+
+      dispatch({
+        type: "GET_TOPICS",
+        payload: res.data.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: "TOPIC_ERROR",
+        payload: error.response.data.error,
+      });
+    }
   }
 
   return (
@@ -88,6 +97,7 @@ export const GlobalProvider = ({ children }) => {
         deletePost,
         addPost,
         getPosts,
+        getTopics,
         // filterPosts,
       }}
     >

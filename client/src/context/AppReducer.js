@@ -26,6 +26,11 @@ export default (state, action) => {
         ...state,
         error: action.payload,
       };
+    case "GET_TOPICS":
+      return {
+        ...state,
+        topics: [...new Set(action.payload.map((post) => post.topic))],
+      };
     default:
       return state;
   }

@@ -1,15 +1,28 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { GlobalContext } from "../context/GlobalState";
 import MenuItem from "./MenuItem";
 
-const Sidebar = () => {
-  const { topics } = useContext(GlobalContext);
+const Sidebar = ({ handleSearch }) => {
+  const { topics, getTopics } = useContext(GlobalContext);
+
+  useEffect(() => {
+    getTopics();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  console.log(topics);
+
   return (
     <div className="sidebar">
       <div className="menu">
         {topics &&
           topics.map((topic, i) => {
-            return <MenuItem key={i} topic={topic} />;
+            return (
+              <Link to={`/${topic}`} onClick={() => handleSearch(topic)}>
+                <MenuItem key={i} topic={topic} />
+              </Link>
+            );
           })}
       </div>
     </div>
