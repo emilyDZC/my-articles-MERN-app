@@ -29,7 +29,7 @@ const Post = ({ id, title, body, tags, date, topic, source }) => {
     <div className="post-container">
       <h3>{title}</h3>
       <p className="post-date">{date}</p>
-      <p>{body}</p>
+      <p className="post-body">{body}</p>
       <p className="post-source">Source: {source}</p>
       <button onClick={() => confirmDelete(id)}>
         <FontAwesomeIcon icon={faTrash} />

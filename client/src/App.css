@@ -149,3 +149,7 @@ button:hover {
 .post-source {
   font-size: 0.8rem;
 }
+
+.post-body {
+  white-space: pre-line;
+}
