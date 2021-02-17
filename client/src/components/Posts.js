@@ -2,8 +2,9 @@ import React, { useContext, useEffect } from "react";
 import Post from "./Post";
 import moment from "moment";
 import { GlobalContext } from "../context/GlobalState";
+import ResetButton from "./ResetButton";
 
-const Posts = ({ searchText }) => {
+const Posts = ({ searchText, handleSearch }) => {
   const { posts, getPosts } = useContext(GlobalContext);
 
   useEffect(() => {
@@ -18,10 +19,13 @@ const Posts = ({ searchText }) => {
   return (
     <>
       {filtered.length > 0 && (
-        <p>Showing results for #{searchText.toLowerCase()}</p>
+        <div style={{ display: "flex", justifyContent: "flex-start" }}>
+          <p>Showing results for #{searchText.toLowerCase()}</p>
+          <ResetButton handleSearch={handleSearch} />
+        </div>
       )}
       {filtered.length > 0 &&
-        filtered.map((post) => {
+        filtered.map((post, i) => {
           return (
             <>
               <Post
@@ -30,9 +34,9 @@ const Posts = ({ searchText }) => {
                 date={moment(post.createdAt).format("Do MMMM YYYY, h:mm a")}
                 tags={post.tags}
                 topic={post.topic}
-                key={post._id}
                 id={post._id}
                 source={post.source}
+                key={i}
               />
             </>
           );
@@ -40,7 +44,7 @@ const Posts = ({ searchText }) => {
 
       {filtered.length < 1 && <p>Showing all results</p>}
       {filtered.length < 1 &&
-        posts.map((post) => {
+        posts.map((post, i) => {
           return (
             <Post
               title={post.title}
@@ -48,9 +52,9 @@ const Posts = ({ searchText }) => {
               date={moment(post.createdAt).format("Do MMMM YYYY, h:mm a")}
               tags={post.tags}
               topic={post.topic}
-              key={post._id}
               id={post._id}
               source={post.source}
+              key={i}
             />
           );
         })}

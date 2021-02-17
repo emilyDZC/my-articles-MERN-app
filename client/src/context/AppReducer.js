@@ -16,6 +16,14 @@ export default (state, action) => {
         ...state,
         posts: [action.payload, ...state.posts],
       };
+    case "UPDATE_POST":
+      return {
+        ...state,
+        posts: [
+          action.payload,
+          ...state.posts.filter((post) => post._id !== action.payload._id),
+        ],
+      };
     case "FILTER_POSTS":
       return {
         ...state,

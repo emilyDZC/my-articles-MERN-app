@@ -107,6 +107,12 @@ textarea {
   width: 100%;
 }
 
+.reset {
+  max-width: 60px;
+  background-color: #a07fc7;
+  margin-left: 10px;
+}
+
 button {
   opacity: 0.3 !important;
 }

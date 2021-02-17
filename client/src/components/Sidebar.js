@@ -11,16 +11,18 @@ const Sidebar = ({ handleSearch }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(topics);
-
   return (
     <div className="sidebar">
       <div className="menu">
         {topics &&
           topics.map((topic, i) => {
             return (
-              <Link to={`/${topic}`} onClick={() => handleSearch(topic)}>
-                <MenuItem key={i} topic={topic} />
+              <Link
+                to={`/${topic}`}
+                key={i}
+                onClick={() => handleSearch(topic)}
+              >
+                <MenuItem topic={topic} />
               </Link>
             );
           })}

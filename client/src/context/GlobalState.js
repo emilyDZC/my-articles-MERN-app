@@ -71,6 +71,27 @@ export const GlobalProvider = ({ children }) => {
     }
   }
 
+  async function updatePost(post) {
+    const config = {
+      header: {
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      const res = await axios.patch(`/api/posts/${post.id}`, post, config);
+
+      dispatch({
+        type: "UPDATE_POST",
+        payload: res.data.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: "POST_ERROR",
+        payload: error.response.data.error,
+      });
+    }
+  }
+
   async function getTopics() {
     try {
       const res = await axios.get("/api/posts");
@@ -97,6 +118,7 @@ export const GlobalProvider = ({ children }) => {
         deletePost,
         addPost,
         getPosts,
+        updatePost,
         getTopics,
         // filterPosts,
       }}
