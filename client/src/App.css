@@ -17,7 +17,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   min-height: 100vh;
   margin: 0;
   font-family: "Lato", sans-serif;
@@ -26,6 +26,19 @@ body {
 .page-container {
   display: flex;
   flex-direction: row;
+}
+
+.music-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.music-entry-table {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .container {

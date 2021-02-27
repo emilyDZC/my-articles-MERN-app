@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { GlobalContext } from "../../context/GlobalState";
-import moment from "moment";
+import MusicEntry from "./MusicEntry";
 
 const MusicPage = () => {
   const { musicEntries, getMusicEntries } = useContext(GlobalContext);
@@ -11,17 +11,33 @@ const MusicPage = () => {
   }, []);
 
   return (
-    <div>
-      {musicEntries.map((entry, i) => {
-        return (
-          <>
-            <p key={i}>
-              {moment(entry.createdAt).format("Do MMM 'YY")}: {entry.composer} -{" "}
-              {entry.title}
-            </p>
-          </>
-        );
-      })}
+    <div className="music-page-container">
+      <h3>Music Log</h3>
+      <div className="music-entry-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Composer</th>
+              <th>Piece</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            {musicEntries.map((entry, i) => {
+              return (
+                <MusicEntry
+                  key={i}
+                  title={entry.title}
+                  composer={entry.composer}
+                  createdAt={entry.createdAt}
+                  description={entry.description}
+                />
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

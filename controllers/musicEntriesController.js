@@ -6,7 +6,7 @@ const MusicEntry = require("../models/MusicEntry.js");
 
 exports.getMusicEntries = async (req, res, next) => {
   try {
-    const musicEntries = await MusicEntry.find();
+    const musicEntries = await MusicEntry.find().sort({ createdAt: -1 });
 
     return res.status(200).json({
       success: true,
