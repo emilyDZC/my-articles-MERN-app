@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import Post from "./Post";
 import moment from "moment";
-import { GlobalContext } from "../context/GlobalState";
+import { GlobalContext } from "../../../context/GlobalState";
 import ResetButton from "./ResetButton";
 
 const Posts = ({ searchText, handleSearch }) => {

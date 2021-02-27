@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { GlobalContext } from "../context/GlobalState";
+import { GlobalContext } from "../../../context/GlobalState";
 
 const AddPost = ({ setShowAddPost }) => {
   const { addPost } = useContext(GlobalContext);

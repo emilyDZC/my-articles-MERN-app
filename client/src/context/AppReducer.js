@@ -39,6 +39,12 @@ export default (state, action) => {
         ...state,
         topics: [...new Set(action.payload.map((post) => post.topic))],
       };
+    case "GET_MUSIC":
+      return {
+        ...state,
+        loading: false,
+        musicEntries: action.payload,
+      };
     default:
       return state;
   }

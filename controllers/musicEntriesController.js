@@ -24,7 +24,7 @@ exports.getMusicEntries = async (req, res, next) => {
 
 exports.addMusicEntry = async (req, res, next) => {
   try {
-    const { title, composer, description, tags, link } = req.body;
+    const { title, composer, description, tags, link, createdAt } = req.body;
 
     const musicEntry = await MusicEntry.create(req.body);
 

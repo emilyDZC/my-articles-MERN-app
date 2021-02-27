@@ -1,47 +1,25 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
-import Header from "./components/Header";
-import Posts from "./components/Posts";
-import AddPost from "./components/AddPost";
-import Sidebar from "./components/Sidebar";
-import Searchbar from "./components/Searchbar";
-import ResetButton from "./components/ResetButton";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
+import Articles from "./components/articles/ArticlesPage";
+import Music from "./components/music/MusicPage";
 import { GlobalProvider } from "./context/GlobalState";
 
-const AddButton = () => {
-  return (
-    <div>
-      <FontAwesomeIcon icon={faPencilAlt} /> Add New Post
-    </div>
-  );
-};
-
 function App() {
-  const [showAddPost, setShowAddPost] = useState(false);
-  const [searchText, setSearchText] = useState("");
-
-  const handleSearch = (text) => {
-    setSearchText(text);
-  };
-
   return (
     <GlobalProvider>
       <Router>
-        <div className="page-container">
-          <Sidebar handleSearch={(val) => handleSearch(val)} />
-          <div className="container">
-            <Header />
-            <Searchbar handleSearch={(val) => handleSearch(val)} />
-            <button onClick={() => setShowAddPost((current) => !current)}>
-              {showAddPost ? "Hide" : <AddButton />}
-            </button>
-            {showAddPost && <AddPost setShowAddPost={setShowAddPost} />}
-            <Posts searchText={searchText} handleSearch={handleSearch} />
-          </div>
-        </div>
+        <Switch>
+          <Route exact path="/api/music">
+            <Music />
+          </Route>
+          <Route exact path="/api/posts">
+            <Articles />
+          </Route>
+          <Route exact path="/">
+            <Articles />
+          </Route>
+        </Switch>
       </Router>
     </GlobalProvider>
   );

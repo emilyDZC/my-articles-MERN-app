@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { GlobalContext } from "../context/GlobalState";
+import { GlobalContext } from "../../../context/GlobalState";
 import MenuItem from "./MenuItem";
 
 const Sidebar = ({ handleSearch }) => {

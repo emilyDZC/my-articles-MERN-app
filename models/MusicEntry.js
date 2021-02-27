@@ -22,6 +22,10 @@ const MusicEntrySchema = new mongoose.Schema({
   tags: {
     type: Array,
   },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 module.exports = mongoose.model("MusicEntry", MusicEntrySchema);

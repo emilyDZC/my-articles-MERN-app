@@ -8,6 +8,7 @@ const initialState = {
   loading: true,
   topics: [],
   searchText: "",
+  musicEntries: [],
 };
 
 // Create context
@@ -17,7 +18,7 @@ export const GlobalContext = createContext(initialState);
 export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
 
-  // Actions
+  // Actions: posts
   async function getPosts() {
     try {
       const res = await axios.get("/api/posts");
@@ -108,6 +109,23 @@ export const GlobalProvider = ({ children }) => {
     }
   }
 
+  // Actions: musicEntries
+  async function getMusicEntries() {
+    try {
+      const res = await axios.get("/api/music");
+
+      dispatch({
+        type: "GET_MUSIC",
+        payload: res.data.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: "MUSIC_ERROR",
+        payload: error.response.data.error,
+      });
+    }
+  }
+
   return (
     <GlobalContext.Provider
       value={{
@@ -115,12 +133,13 @@ export const GlobalProvider = ({ children }) => {
         error: state.error,
         loading: state.loading,
         topics: state.topics,
+        musicEntries: state.musicEntries,
         deletePost,
         addPost,
         getPosts,
         updatePost,
         getTopics,
-        // filterPosts,
+        getMusicEntries,
       }}
     >
       {children}

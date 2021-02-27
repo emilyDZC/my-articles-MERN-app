@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { GlobalContext } from "../context/GlobalState";
+import { GlobalContext } from "../../../context/GlobalState";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
