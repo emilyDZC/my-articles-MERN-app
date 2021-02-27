@@ -10,6 +10,7 @@ dotenv.config({ path: "./config/config.env" });
 connectDB();
 
 const posts = require("./routes/posts.js");
+const musicEntries = require("./routes/musicEntries.js");
 
 const app = express();
 
@@ -20,6 +21,7 @@ if (process.env.NODE_ENV === "development") {
 }
 
 app.use("/api/posts", posts);
+app.use("/api/music", musicEntries);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
