@@ -3,12 +3,14 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import Articles from "./components/articles/ArticlesPage";
 import Music from "./components/music/MusicPage";
+import Navbar from "./components/navbar/Navbar";
 import { GlobalProvider } from "./context/GlobalState";
 
 function App() {
   return (
     <GlobalProvider>
       <Router>
+        <Navbar />
         <Switch>
           <Route exact path="/api/music">
             <Music />

@@ -17,7 +17,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: center; */
   min-height: 100vh;
   margin: 0;
   font-family: "Lato", sans-serif;
@@ -44,6 +43,16 @@ body {
 .container {
   margin-left: 100px;
   width: 600px;
+}
+
+.nav-container {
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #dddcdc;
+  padding: 4px;
 }
 
 .sidebar {
@@ -171,4 +180,13 @@ button:hover {
 
 .post-body {
   white-space: pre-line;
+}
+
+a {
+  text-decoration: none;
+}
+
+.nav-link {
+  margin-left: 8px;
+  margin-right: 8px;
 }
