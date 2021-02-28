@@ -126,6 +126,27 @@ export const GlobalProvider = ({ children }) => {
     }
   }
 
+  async function addMusicEntry(entry) {
+    const config = {
+      header: {
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      const res = await axios.post("/api/music", entry, config);
+
+      dispatch({
+        type: "ADD_MUSIC_ENTRY",
+        payload: res.data.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: "MUSIC_ERROR",
+        payload: error.response.data.error,
+      });
+    }
+  }
+
   return (
     <GlobalContext.Provider
       value={{
@@ -140,6 +161,7 @@ export const GlobalProvider = ({ children }) => {
         updatePost,
         getTopics,
         getMusicEntries,
+        addMusicEntry,
       }}
     >
       {children}

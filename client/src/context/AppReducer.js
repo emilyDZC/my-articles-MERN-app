@@ -45,6 +45,11 @@ export default (state, action) => {
         loading: false,
         musicEntries: action.payload,
       };
+    case "ADD_MUSIC_ENTRY":
+      return {
+        ...state,
+        musicEntries: [action.payload, ...state.musicEntries],
+      };
     default:
       return state;
   }

@@ -1,9 +1,12 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../../context/GlobalState";
-import MusicEntry from "./MusicEntry";
+import MusicEntry from "./components/MusicEntry";
+import AddMusicEntry from "./components/AddMusicEntry";
+import AddButton from "../shared/AddButton";
 
 const MusicPage = () => {
   const { musicEntries, getMusicEntries } = useContext(GlobalContext);
+  const [showAddEntry, setShowAddEntry] = useState(false);
 
   useEffect(() => {
     getMusicEntries();
@@ -13,6 +16,11 @@ const MusicPage = () => {
   return (
     <div className="music-page-container">
       <h3>Music Log</h3>
+      <button onClick={() => setShowAddEntry((current) => !current)}>
+        {showAddEntry ? "Hide" : <AddButton text="Music Entry" />}
+      </button>
+      {showAddEntry && <AddMusicEntry setShowAddEntry={setShowAddEntry} />}
+
       <div className="music-entry-table">
         <table>
           <thead>

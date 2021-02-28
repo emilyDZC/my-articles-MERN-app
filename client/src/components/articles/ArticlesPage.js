@@ -4,17 +4,7 @@ import Posts from "./components/Posts";
 import AddPost from "./components/AddPost";
 import Sidebar from "./components/Sidebar";
 import Searchbar from "./components/Searchbar";
-import ResetButton from "./components/ResetButton";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
-
-const AddButton = () => {
-  return (
-    <div>
-      <FontAwesomeIcon icon={faPencilAlt} /> Add New Post
-    </div>
-  );
-};
+import AddButton from "../shared/AddButton";
 
 const ArticlesPage = () => {
   const [showAddPost, setShowAddPost] = useState(false);
@@ -31,7 +21,7 @@ const ArticlesPage = () => {
         <Header />
         <Searchbar handleSearch={(val) => handleSearch(val)} />
         <button onClick={() => setShowAddPost((current) => !current)}>
-          {showAddPost ? "Hide" : <AddButton />}
+          {showAddPost ? "Hide" : <AddButton text="Post" />}
         </button>
         {showAddPost && <AddPost setShowAddPost={setShowAddPost} />}
         <Posts searchText={searchText} handleSearch={handleSearch} />
