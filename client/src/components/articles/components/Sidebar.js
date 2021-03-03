@@ -1,5 +1,4 @@
 import React, { useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { GlobalContext } from "../../../context/GlobalState";
 import MenuItem from "./MenuItem";
 
@@ -17,13 +16,11 @@ const Sidebar = ({ handleSearch }) => {
         {topics &&
           topics.map((topic, i) => {
             return (
-              <Link
-                to={`/${topic}`}
+              <MenuItem
                 key={i}
-                onClick={() => handleSearch(topic)}
-              >
-                <MenuItem topic={topic} />
-              </Link>
+                topic={topic}
+                handleSearch={(val) => handleSearch(val)}
+              />
             );
           })}
       </div>

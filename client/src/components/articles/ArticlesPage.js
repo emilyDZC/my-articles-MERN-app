@@ -5,9 +5,11 @@ import AddPost from "./components/AddPost";
 import Sidebar from "./components/Sidebar";
 import Searchbar from "./components/Searchbar";
 import AddButton from "../shared/AddButton";
+import SearchButton from "../shared/SearchButton";
 
 const ArticlesPage = () => {
   const [showAddPost, setShowAddPost] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
   const [searchText, setSearchText] = useState("");
 
   const handleSearch = (text) => {
@@ -19,7 +21,10 @@ const ArticlesPage = () => {
       <Sidebar handleSearch={(val) => handleSearch(val)} />
       <div className="container">
         <Header />
-        <Searchbar handleSearch={(val) => handleSearch(val)} />
+        <button onClick={() => setShowSearch((current) => !current)}>
+          {showSearch ? "Hide" : <SearchButton />}
+        </button>
+        {showSearch && <Searchbar handleSearch={(val) => handleSearch(val)} />}
         <button onClick={() => setShowAddPost((current) => !current)}>
           {showAddPost ? "Hide" : <AddButton text="Post" />}
         </button>

@@ -24,23 +24,23 @@ const AddMusicEntry = ({ setShowAddEntry }) => {
   };
 
   return (
-    <div>
+    <div style={{ minWidth: "500px" }}>
       <h3>Add new music entry</h3>
       <form onSubmit={onSubmit}>
         <div className="form-control">
-          <label htmlFor="text">Title</label>
+          <label htmlFor="text">Composer</label>
           <input
             type="text"
-            placeholder="Enter title..."
-            onChange={(e) => setTitle(e.target.value)}
+            placeholder="Enter composer..."
+            onChange={(e) => setComposer(e.target.value)}
           />
         </div>
         <div className="form-control">
-          <label htmlFor="textarea">Composer</label>
+          <label htmlFor="textarea">Piece</label>
           <textarea
-            rows={10}
-            placeholder="Enter composer..."
-            onChange={(e) => setComposer(e.target.value)}
+            rows={5}
+            placeholder="Enter title of piece..."
+            onChange={(e) => setTitle(e.target.value)}
           />
         </div>
         <div className="form-control">

@@ -15,7 +15,7 @@ const MusicPage = () => {
 
   return (
     <div className="music-page-container">
-      <h3>Music Log</h3>
+      <h2>Music Log</h2>
       <button onClick={() => setShowAddEntry((current) => !current)}>
         {showAddEntry ? "Hide" : <AddButton text="Music Entry" />}
       </button>

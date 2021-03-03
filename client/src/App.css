@@ -190,3 +190,12 @@ a {
   margin-left: 8px;
   margin-right: 8px;
 }
+
+th {
+  text-align: left;
+  padding: 10px;
+}
+
+td {
+  padding: 10px;
+}
