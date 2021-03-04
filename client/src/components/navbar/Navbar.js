@@ -10,6 +10,9 @@ const Navbar = () => {
       <Link to="/api/music" className="nav-link">
         My Music
       </Link>
+      <Link to="/api/garden" className="nav-link">
+        My Garden
+      </Link>
     </div>
   );
 };

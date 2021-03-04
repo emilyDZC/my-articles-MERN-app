@@ -11,6 +11,7 @@ connectDB();
 
 const posts = require("./routes/posts.js");
 const musicEntries = require("./routes/musicEntries.js");
+const gardenTodos = require("./routes/gardenTodos.js");
 
 const app = express();
 
@@ -22,6 +23,7 @@ if (process.env.NODE_ENV === "development") {
 
 app.use("/api/posts", posts);
 app.use("/api/music", musicEntries);
+app.use("/api/garden-todos", gardenTodos);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));

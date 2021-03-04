@@ -50,6 +50,17 @@ export default (state, action) => {
         ...state,
         musicEntries: [action.payload, ...state.musicEntries],
       };
+    case "ADD_GARDEN_TODO":
+      return {
+        ...state,
+        gardenTodos: [action.payload, ...state.musicEntries],
+      };
+    case "GET_GARDEN_TODOS":
+      return {
+        ...state,
+        loading: false,
+        gardenTodos: action.payload,
+      };
     default:
       return state;
   }

@@ -9,6 +9,7 @@ const initialState = {
   topics: [],
   searchText: "",
   musicEntries: [],
+  gardenTodos: [],
 };
 
 // Create context
@@ -147,6 +148,44 @@ export const GlobalProvider = ({ children }) => {
     }
   }
 
+  // Actions: gardenTodos
+  async function getGardenTodos() {
+    try {
+      const res = await axios.get("/api/garden-todos");
+
+      dispatch({
+        type: "GET_GARDEN_TODOS",
+        payload: res.data.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: "GARDEN_TODO_ERROR",
+        payload: error.response.data.error,
+      });
+    }
+  }
+
+  async function addGardenTodo(todo) {
+    const config = {
+      header: {
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      const res = await axios.post("/api/garden-todo", todo, config);
+
+      dispatch({
+        type: "ADD_GARDEN_TODO",
+        payload: res.data.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: "GARDEN_TODO_ERROR",
+        payload: error.response.data.error,
+      });
+    }
+  }
+
   return (
     <GlobalContext.Provider
       value={{
@@ -155,6 +194,7 @@ export const GlobalProvider = ({ children }) => {
         loading: state.loading,
         topics: state.topics,
         musicEntries: state.musicEntries,
+        gardenTodos: state.gardenTodos,
         deletePost,
         addPost,
         getPosts,
@@ -162,6 +202,8 @@ export const GlobalProvider = ({ children }) => {
         getTopics,
         getMusicEntries,
         addMusicEntry,
+        getGardenTodos,
+        addGardenTodo,
       }}
     >
       {children}
