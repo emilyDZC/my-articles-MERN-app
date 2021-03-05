@@ -1,5 +1,5 @@
 import React from "react";
-import TodoList from "./components/TodoList";
+import PlantTable from "./components/PlantTable";
 import Flowers from "./components/Flowers";
 
 const GardenPage = () => {
@@ -7,7 +7,7 @@ const GardenPage = () => {
     <div className="music-page-container">
       <h2>My Garden</h2>
       <div className="widgets-container">
-        <TodoList />
+        <PlantTable />
         <Flowers />
       </div>
     </div>

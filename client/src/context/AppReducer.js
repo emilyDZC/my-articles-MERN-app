@@ -50,16 +50,16 @@ export default (state, action) => {
         ...state,
         musicEntries: [action.payload, ...state.musicEntries],
       };
-    case "ADD_GARDEN_TODO":
+    case "ADD_PLANT":
       return {
         ...state,
-        gardenTodos: [action.payload, ...state.musicEntries],
+        plants: [action.payload, ...state.plants],
       };
-    case "GET_GARDEN_TODOS":
+    case "GET_PLANTS":
       return {
         ...state,
         loading: false,
-        gardenTodos: action.payload,
+        plants: action.payload,
       };
     default:
       return state;

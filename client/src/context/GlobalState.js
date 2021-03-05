@@ -9,7 +9,7 @@ const initialState = {
   topics: [],
   searchText: "",
   musicEntries: [],
-  gardenTodos: [],
+  plants: [],
 };
 
 // Create context
@@ -148,39 +148,39 @@ export const GlobalProvider = ({ children }) => {
     }
   }
 
-  // Actions: gardenTodos
-  async function getGardenTodos() {
+  // Actions: plants
+  async function getPlants() {
     try {
-      const res = await axios.get("/api/garden-todos");
+      const res = await axios.get("/api/plants");
 
       dispatch({
-        type: "GET_GARDEN_TODOS",
+        type: "GET_PLANTS",
         payload: res.data.data,
       });
     } catch (error) {
       dispatch({
-        type: "GARDEN_TODO_ERROR",
+        type: "PLANTS_ERROR",
         payload: error.response.data.error,
       });
     }
   }
 
-  async function addGardenTodo(todo) {
+  async function addPlant(todo) {
     const config = {
       header: {
         "Content-Type": "application/json",
       },
     };
     try {
-      const res = await axios.post("/api/garden-todo", todo, config);
+      const res = await axios.post("/api/plants", todo, config);
 
       dispatch({
-        type: "ADD_GARDEN_TODO",
+        type: "ADD_PLANT",
         payload: res.data.data,
       });
     } catch (error) {
       dispatch({
-        type: "GARDEN_TODO_ERROR",
+        type: "PLANT_ERROR",
         payload: error.response.data.error,
       });
     }
@@ -194,7 +194,7 @@ export const GlobalProvider = ({ children }) => {
         loading: state.loading,
         topics: state.topics,
         musicEntries: state.musicEntries,
-        gardenTodos: state.gardenTodos,
+        plants: state.plants,
         deletePost,
         addPost,
         getPosts,
@@ -202,8 +202,8 @@ export const GlobalProvider = ({ children }) => {
         getTopics,
         getMusicEntries,
         addMusicEntry,
-        getGardenTodos,
-        addGardenTodo,
+        getPlants,
+        addPlant,
       }}
     >
       {children}

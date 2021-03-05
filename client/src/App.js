@@ -13,13 +13,13 @@ function App() {
       <Router>
         <Navbar />
         <Switch>
-          <Route exact path="/api/music">
+          <Route exact path="/music">
             <Music />
           </Route>
-          <Route exact path="/api/posts">
+          <Route exact path="/posts">
             <Articles />
           </Route>
-          <Route exact path="/api/garden">
+          <Route exact path="/garden">
             <Garden />
           </Route>
           <Route exact path="/">
