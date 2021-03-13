@@ -11,6 +11,10 @@ const MusicEntrySchema = new mongoose.Schema({
     trim: true,
     required: [true, "Please add a composer"],
   },
+  instrumentation: {
+    type: String,
+    trim: true,
+  },
   link: {
     type: String,
     trim: true,

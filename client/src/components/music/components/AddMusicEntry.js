@@ -7,6 +7,7 @@ const AddMusicEntry = ({ setShowAddEntry }) => {
   const [title, setTitle] = useState();
   const [composer, setComposer] = useState();
   const [description, setDescription] = useState();
+  const [instrumentation, setInstrumentation] = useState();
   const [tags, setTags] = useState();
 
   const onSubmit = (e) => {
@@ -16,6 +17,7 @@ const AddMusicEntry = ({ setShowAddEntry }) => {
       title,
       composer,
       description,
+      instrumentation,
       tags,
     };
 
@@ -33,6 +35,14 @@ const AddMusicEntry = ({ setShowAddEntry }) => {
             type="text"
             placeholder="Enter composer..."
             onChange={(e) => setComposer(e.target.value)}
+          />
+        </div>
+        <div className="form-control">
+          <label htmlFor="text">Instrument(s)</label>
+          <input
+            type="text"
+            placeholder="Enter instruments..."
+            onChange={(e) => setInstrumentation(e.target.value)}
           />
         </div>
         <div className="form-control">

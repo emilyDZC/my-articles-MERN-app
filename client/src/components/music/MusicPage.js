@@ -28,6 +28,7 @@ const MusicPage = () => {
               <th>Date</th>
               <th>Composer</th>
               <th>Piece</th>
+              <th>Instrument(s)</th>
               <th>Notes</th>
             </tr>
           </thead>
@@ -39,6 +40,7 @@ const MusicPage = () => {
                   title={entry.title}
                   composer={entry.composer}
                   createdAt={entry.createdAt}
+                  instrumentation={entry.instrumentation}
                   description={entry.description}
                 />
               );
