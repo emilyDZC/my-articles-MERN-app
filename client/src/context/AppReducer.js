@@ -50,6 +50,23 @@ export default (state, action) => {
         ...state,
         musicEntries: [action.payload, ...state.musicEntries],
       };
+    case "UPDATE_MUSIC_ENTRY":
+      return {
+        ...state,
+        musicEntries: [
+          action.payload,
+          ...state.musicEntriess.filter(
+            (musicEntry) => musicEntry._id !== action.payload._id
+          ),
+        ],
+      };
+    case "DELETE_MUSIC_ENTRY":
+      return {
+        ...state,
+        musicEntries: state.musicEntries.filter(
+          (musicEntry) => musicEntry._id !== action.payload
+        ),
+      };
     case "ADD_PLANT":
       return {
         ...state,
@@ -68,6 +85,11 @@ export default (state, action) => {
           action.payload,
           ...state.plants.filter((plant) => plant._id !== action.payload._id),
         ],
+      };
+    case "DELETE_PLANT":
+      return {
+        ...state,
+        plants: state.plants.filter((plant) => plant._id !== action.payload),
       };
     default:
       return state;

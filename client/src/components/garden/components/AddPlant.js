@@ -83,8 +83,8 @@ const AddPlant = ({ setShowAddEntry }) => {
           placeholder="Enter notes..."
           func={(notes) => setNotes(notes)}
         />
-        {/* <FileUploader onFileSelect={(file) => setFile(file)} />
-        <button className="btn">Add plant</button> */}
+        {/* <FileUploader onFileSelect={(file) => setFile(file)} /> */}
+        <button className="btn">Add plant</button>
       </form>
     </div>
   );

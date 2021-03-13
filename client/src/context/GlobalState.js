@@ -148,6 +148,47 @@ export const GlobalProvider = ({ children }) => {
     }
   }
 
+  async function updateMusicEntry(musicEntry) {
+    const config = {
+      header: {
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      const res = await axios.patch(
+        `/api/music/${musicEntry.id}`,
+        musicEntry,
+        config
+      );
+
+      dispatch({
+        type: "UPDATE_MUSIC_ENTRY",
+        payload: res.data.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: "MUSIC_ENTRY_ERROR",
+        payload: error.response.data.error,
+      });
+    }
+  }
+
+  async function deleteMusicEntry(id) {
+    try {
+      await axios.delete(`/api/music/${id}`);
+
+      dispatch({
+        type: "DELETE_MUSIC_ENTRY",
+        payload: id,
+      });
+    } catch (error) {
+      dispatch({
+        type: "POST_ERROR",
+        payload: error.response.data.error,
+      });
+    }
+  }
+
   // Actions: plants
   async function getPlants() {
     try {
@@ -207,6 +248,22 @@ export const GlobalProvider = ({ children }) => {
     }
   }
 
+  async function deletePlant(id) {
+    try {
+      await axios.delete(`/api/plants/${id}`);
+
+      dispatch({
+        type: "DELETE_PLANT",
+        payload: id,
+      });
+    } catch (error) {
+      dispatch({
+        type: "POST_ERROR",
+        payload: error.response.data.error,
+      });
+    }
+  }
+
   return (
     <GlobalContext.Provider
       value={{
@@ -223,9 +280,12 @@ export const GlobalProvider = ({ children }) => {
         getTopics,
         getMusicEntries,
         addMusicEntry,
+        updateMusicEntry,
+        deleteMusicEntry,
         getPlants,
         addPlant,
         updatePlant,
+        deletePlant,
       }}
     >
       {children}
