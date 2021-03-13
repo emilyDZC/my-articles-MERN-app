@@ -1,5 +1,6 @@
 import React, { useEffect, useContext } from "react";
 import { GlobalContext } from "../../../context/GlobalState";
+import PlantEntry from "./PlantEntry";
 
 const PlantTable = () => {
   const { plants, getPlants } = useContext(GlobalContext);
@@ -19,18 +20,11 @@ const PlantTable = () => {
           <th>Plant out</th>
           <th>Flower</th>
           <th>Notes</th>
+          {/* <th>Link</th> */}
         </thead>
         <tbody>
           {plants.map((plant, i) => {
-            return (
-              <tr>
-                <td>{plant.name}</td>
-                <td>{plant.sowMonth}</td>
-                <td>{plant.plantMonth}</td>
-                <td>{plant.flowerMonth}</td>
-                <td>{plant.notes}</td>
-              </tr>
-            );
+            return <PlantEntry plant={plant} key={i} />;
           })}
         </tbody>
       </table>

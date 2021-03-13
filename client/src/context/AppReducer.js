@@ -61,6 +61,14 @@ export default (state, action) => {
         loading: false,
         plants: action.payload,
       };
+    case "UPDATE_PLANT":
+      return {
+        ...state,
+        plants: [
+          action.payload,
+          ...state.plants.filter((plant) => plant._id !== action.payload._id),
+        ],
+      };
     default:
       return state;
   }

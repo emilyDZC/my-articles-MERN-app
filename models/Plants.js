@@ -4,7 +4,7 @@ const PlantSchema = new mongoose.Schema({
   name: {
     type: String,
     trim: true,
-    required: [true, "Please add a task"],
+    required: [true, "Please add a name"],
   },
   latinName: {
     type: String,
@@ -30,9 +30,9 @@ const PlantSchema = new mongoose.Schema({
     type: String,
     trim: true,
   },
-  // mainImage: {
-  //   type: Image,
-  // },
+  mainImage: {
+    type: String,
+  },
   images: {
     type: Array,
   },

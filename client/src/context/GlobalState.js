@@ -165,17 +165,38 @@ export const GlobalProvider = ({ children }) => {
     }
   }
 
-  async function addPlant(todo) {
+  async function addPlant(plant) {
     const config = {
       header: {
         "Content-Type": "application/json",
       },
     };
     try {
-      const res = await axios.post("/api/plants", todo, config);
+      const res = await axios.post("/api/plants", plant, config);
 
       dispatch({
         type: "ADD_PLANT",
+        payload: res.data.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: "PLANT_ERROR",
+        payload: error.response.data.error,
+      });
+    }
+  }
+
+  async function updatePlant(plant) {
+    const config = {
+      header: {
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      const res = await axios.patch(`/api/plants/${plant.id}`, plant, config);
+
+      dispatch({
+        type: "UPDATE_PLANT",
         payload: res.data.data,
       });
     } catch (error) {
@@ -204,6 +225,7 @@ export const GlobalProvider = ({ children }) => {
         addMusicEntry,
         getPlants,
         addPlant,
+        updatePlant,
       }}
     >
       {children}

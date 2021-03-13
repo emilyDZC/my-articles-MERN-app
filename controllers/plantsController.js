@@ -24,8 +24,6 @@ exports.getPlants = async (req, res, next) => {
 
 exports.addPlant = async (req, res, next) => {
   try {
-    const { todo, completed, createdAt } = req.body;
-
     const plant = await Plant.create(req.body);
 
     return res.status(201).json({ success: true, data: plant });
