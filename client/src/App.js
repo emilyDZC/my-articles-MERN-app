@@ -7,6 +7,8 @@ import Garden from "./components/garden/GardenPage";
 import Navbar from "./components/navbar/Navbar";
 import { GlobalProvider } from "./context/GlobalState";
 
+import { withAuthenticator, AmplifySignOut } from "@aws-amplify/ui-react";
+
 function App() {
   return (
     <GlobalProvider>
@@ -26,9 +28,10 @@ function App() {
             <Articles />
           </Route>
         </Switch>
+        <AmplifySignOut />
       </Router>
     </GlobalProvider>
   );
 }
 
-export default App;
+export default withAuthenticator(App);
