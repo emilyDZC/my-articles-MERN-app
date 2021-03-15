@@ -13,6 +13,9 @@ const Navbar = () => {
       <Link to="/garden" className="nav-link">
         My Garden
       </Link>
+      <Link to="/birds" className="nav-link">
+        My Birds
+      </Link>
     </div>
   );
 };

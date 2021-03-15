@@ -4,6 +4,7 @@ import "./App.css";
 import Articles from "./components/articles/ArticlesPage";
 import Music from "./components/music/MusicPage";
 import Garden from "./components/garden/GardenPage";
+import Birds from "./components/birds/BirdsPage";
 import Navbar from "./components/navbar/Navbar";
 import { GlobalProvider } from "./context/GlobalState";
 
@@ -24,11 +25,13 @@ function App() {
           <Route exact path="/garden">
             <Garden />
           </Route>
+          <Route exact path="/birds">
+            <Birds />
+          </Route>
           <Route exact path="/">
             <Articles />
           </Route>
         </Switch>
-        <AmplifySignOut />
       </Router>
     </GlobalProvider>
   );
