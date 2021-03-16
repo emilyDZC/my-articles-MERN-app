@@ -6,20 +6,29 @@ const BirdSchema = new mongoose.Schema({
     trim: true,
     required: [true, "Please add a name"],
   },
-  location: {
+  habitat: {
     type: String,
     trim: true,
+  },
+  image: {
+    type: String,
   },
   createdAt: {
     type: Date,
     default: Date.now,
   },
-  audio: {
+  song: {
     type: String,
-    trim: true,
   },
   tags: {
     type: Array,
   },
+  birdSightings: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "BirdSighting",
+    },
+  ],
 });
+
 module.exports = mongoose.model("Bird", BirdSchema);
