@@ -91,6 +91,17 @@ export default (state, action) => {
         ...state,
         plants: state.plants.filter((plant) => plant._id !== action.payload),
       };
+    case "ADD_BIRD":
+      return {
+        ...state,
+        birds: [action.payload, ...state.birds],
+      };
+    case "GET_BIRDS":
+      return {
+        ...state,
+        loading: false,
+        birds: action.payload,
+      };
     default:
       return state;
   }

@@ -12,12 +12,10 @@ const BirdSightingSchema = new mongoose.Schema({
   notes: {
     type: String,
   },
-  bird: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Bird",
-    },
-  ],
+  bird: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Bird",
+  },
 });
 
 module.exports = mongoose.model("BirdSighting", BirdSightingSchema);

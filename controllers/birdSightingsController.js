@@ -1,3 +1,4 @@
+const Bird = require("../models/Bird");
 const BirdSighting = require("../models/BirdSighting");
 
 // @desc    Get all bird sightings
@@ -24,7 +25,13 @@ exports.getAllBirdSightings = async (req, res, next) => {
 
 exports.addBirdSighting = async (req, res, next) => {
   try {
+    const birdId = req.body.bird;
+    const bird = await Bird.findById(birdId);
     const birdSighting = await BirdSighting.create(req.body);
+    await birdSighting.save();
+
+    bird.birdSightings.push(birdSighting);
+    await bird.save();
 
     return res.status(201).json({ success: true, data: birdSighting });
   } catch (error) {

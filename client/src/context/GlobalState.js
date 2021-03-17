@@ -10,6 +10,7 @@ const initialState = {
   searchText: "",
   musicEntries: [],
   plants: [],
+  birds: [],
 };
 
 // Create context
@@ -264,6 +265,44 @@ export const GlobalProvider = ({ children }) => {
     }
   }
 
+  // Actions: birds
+  async function getBirds() {
+    try {
+      const res = await axios.get("/api/birds");
+
+      dispatch({
+        type: "GET_BIRDS",
+        payload: res.data.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: "BIRDS_ERROR",
+        payload: error.response.data.error,
+      });
+    }
+  }
+
+  async function addBird(bird) {
+    const config = {
+      header: {
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      const res = await axios.post("/api/birds", bird, config);
+
+      dispatch({
+        type: "ADD_BIRD",
+        payload: res.data.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: "BIRD_ERROR",
+        payload: error.response.data.error,
+      });
+    }
+  }
+
   return (
     <GlobalContext.Provider
       value={{
@@ -273,6 +312,7 @@ export const GlobalProvider = ({ children }) => {
         topics: state.topics,
         musicEntries: state.musicEntries,
         plants: state.plants,
+        birds: state.birds,
         deletePost,
         addPost,
         getPosts,
@@ -286,6 +326,8 @@ export const GlobalProvider = ({ children }) => {
         addPlant,
         updatePlant,
         deletePlant,
+        getBirds,
+        addBird,
       }}
     >
       {children}
