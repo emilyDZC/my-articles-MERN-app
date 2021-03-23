@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const BirdSightingSchema = new mongoose.Schema({
   location: {
     type: String,
-    required: [true, "Please give a location"],
+    // required: [true, "Please give a location"],
   },
   createdAt: {
     type: Date,

@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { GlobalContext } from "../../context/GlobalState";
+import BirdTable from "./components/BirdTable";
 
 const BirdsPage = () => {
   const { birds, getBirds } = useContext(GlobalContext);
@@ -8,16 +9,13 @@ const BirdsPage = () => {
     getBirds();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   return (
-    <div>
+    <div className="birds-page">
       <h2>Birds</h2>
-      {birds.map((bird, i) => {
-        return (
-          <p key={i}>
-            {bird.name} ({bird.birdSightings.length})
-          </p>
-        );
-      })}
+      <div className="birds-container">
+        <BirdTable birds={birds} />
+      </div>
     </div>
   );
 };

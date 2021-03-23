@@ -303,6 +303,20 @@ export const GlobalProvider = ({ children }) => {
     }
   }
 
+  // Actions: birdSightings
+  async function addBirdSighting(birdId) {
+    const config = {
+      header: {
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      const res = await axios.post("/api/birdSightings", birdId, config);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <GlobalContext.Provider
       value={{
@@ -328,6 +342,7 @@ export const GlobalProvider = ({ children }) => {
         deletePlant,
         getBirds,
         addBird,
+        addBirdSighting,
       }}
     >
       {children}
