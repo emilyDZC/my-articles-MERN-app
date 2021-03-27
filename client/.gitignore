@@ -33,6 +33,8 @@ amplify/mock-data
 amplify/backend/amplify-meta.json
 amplify/backend/awscloudformation
 amplify/backend/.temp
+amplify/backend/auth
+amplify/team-provider-info.json
 build/
 dist/
 node_modules/
