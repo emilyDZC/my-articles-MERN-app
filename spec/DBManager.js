@@ -1,9 +1,6 @@
 const { MongoClient } = require("mongodb");
 const { MongoMemoryServer } = require("mongodb-memory-server");
 
-// Extend the default timeout so MongoDB binaries can download
-// setTimeout(() => {}, 60000);
-
 const COLLECTIONS = [
   "posts",
   "musicEntries",

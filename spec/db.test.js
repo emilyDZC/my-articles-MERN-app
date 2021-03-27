@@ -11,7 +11,6 @@ describe("Group.getGroupById", () => {
   beforeEach(() => dbman.models.Group.collection.insertOne(GROUP));
 
   it("should return null with an invalid id", async () => {
-    // this.timeout(5000);
     expect.assertions(1);
     const result = await dbman.models.Group.getGroupById("x");
     expect(result).toBeNull();
