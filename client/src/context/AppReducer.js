@@ -102,6 +102,34 @@ export default (state, action) => {
         loading: false,
         birds: action.payload,
       };
+    case "GET_TEACHING":
+      return {
+        ...state,
+        loading: false,
+        teachingEntries: action.payload,
+      };
+    case "ADD_TEACHING_ENTRY":
+      return {
+        ...state,
+        teachingEntries: [action.payload, ...state.teachingEntries],
+      };
+    case "UPDATE_TEACHING_ENTRY":
+      return {
+        ...state,
+        teachingEntries: [
+          action.payload,
+          ...state.teachingEntries.filter(
+            (teachingEntry) => teachingEntry._id !== action.payload._id
+          ),
+        ],
+      };
+    case "DELETE_TEACHING_ENTRY":
+      return {
+        ...state,
+        teachingEntries: state.teachingEntries.filter(
+          (teachingEntry) => teachingEntry._id !== action.payload
+        ),
+      };
     default:
       return state;
   }

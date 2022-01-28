@@ -14,6 +14,7 @@ const musicEntries = require("./routes/musicEntries.js");
 const plants = require("./routes/plants.js");
 const birds = require("./routes/birds");
 const birdSightings = require("./routes/birdSightings");
+const teaching = require("./routes/teaching");
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.use("/api/music", musicEntries);
 app.use("/api/plants", plants);
 app.use("/api/birds", birds);
 app.use("/api/birdSightings", birdSightings);
+app.use("/api/teaching", teaching);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));

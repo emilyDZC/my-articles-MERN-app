@@ -11,6 +11,7 @@ const initialState = {
   musicEntries: [],
   plants: [],
   birds: [],
+  teachingEntries: [],
 };
 
 // Create context
@@ -317,6 +318,85 @@ export const GlobalProvider = ({ children }) => {
     }
   }
 
+  // Actions: teachingEntries
+  async function getTeachingEntries() {
+    try {
+      const res = await axios.get("/api/teaching");
+
+      dispatch({
+        type: "GET_TEACHING",
+        payload: res.data.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: "TEACHING_ERROR",
+        payload: error.response.data.error,
+      });
+    }
+  }
+
+  async function addTeachingEntry(entry) {
+    const config = {
+      header: {
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      const res = await axios.post("/api/teaching", entry, config);
+
+      dispatch({
+        type: "ADD_TEACHING_ENTRY",
+        payload: res.data.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: "TEACHING_ERROR",
+        payload: error.response.data.error,
+      });
+    }
+  }
+
+  async function updateTeachingEntry(teachingEntry) {
+    const config = {
+      header: {
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      const res = await axios.patch(
+        `/api/teaching/${teachingEntry.id}`,
+        teachingEntry,
+        config
+      );
+
+      dispatch({
+        type: "UPDATE_TEACHING_ENTRY",
+        payload: res.data.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: "TEACHING_ENTRY_ERROR",
+        payload: error.response.data.error,
+      });
+    }
+  }
+
+  async function deleteTeachingEntry(id) {
+    try {
+      await axios.delete(`/api/teaching/${id}`);
+
+      dispatch({
+        type: "DELETE_TEACHING_ENTRY",
+        payload: id,
+      });
+    } catch (error) {
+      dispatch({
+        type: "POST_ERROR",
+        payload: error.response.data.error,
+      });
+    }
+  }
+
   return (
     <GlobalContext.Provider
       value={{
@@ -327,6 +407,7 @@ export const GlobalProvider = ({ children }) => {
         musicEntries: state.musicEntries,
         plants: state.plants,
         birds: state.birds,
+        teachingEntries: state.teachingEntries,
         deletePost,
         addPost,
         getPosts,
@@ -343,6 +424,10 @@ export const GlobalProvider = ({ children }) => {
         getBirds,
         addBird,
         addBirdSighting,
+        getTeachingEntries,
+        addTeachingEntry,
+        updateTeachingEntry,
+        deleteTeachingEntry,
       }}
     >
       {children}

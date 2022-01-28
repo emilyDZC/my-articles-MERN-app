@@ -5,6 +5,7 @@ import Articles from "./components/articles/ArticlesPage";
 import Music from "./components/music/MusicPage";
 import Garden from "./components/garden/GardenPage";
 import Birds from "./components/birds/BirdsPage";
+import Teaching from "./components/teaching/TeachingPage";
 import Navbar from "./components/navbar/Navbar";
 import { GlobalProvider } from "./context/GlobalState";
 
@@ -27,6 +28,9 @@ function App() {
           </Route>
           <Route exact path="/birds">
             <Birds />
+          </Route>
+          <Route exact path="/teaching">
+            <Teaching />
           </Route>
           <Route exact path="/">
             <Articles />
