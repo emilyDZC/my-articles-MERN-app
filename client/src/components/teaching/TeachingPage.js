@@ -2,8 +2,8 @@ import React, { useState, useContext, useEffect } from "react";
 import { GlobalContext } from "../../context/GlobalState";
 import AddButton from "../shared/AddButton";
 import SearchButton from "../shared/SearchButton";
-import Header from "../articles/components/Header";
 import AddTeachingPost from "./components/AddTeachingPost";
+import TeachingEntries from "./components/TeachingEntries";
 
 const TeachingPage = () => {
   const [showAddPost, setShowAddPost] = useState(false);
@@ -23,15 +23,14 @@ const TeachingPage = () => {
   return (
     <div className="page-container">
       <div className="container">
-        <Header />
-        {teachingEntries.map((entry) => {
+        {/* {teachingEntries.map((entry) => {
           return (
             <div>
               <h3>{entry.title}</h3>
               <p>{entry.body}</p>
             </div>
           );
-        })}
+        })} */}
         {/* <button onClick={() => setShowSearch((current) => !current)}>
           {showSearch ? "Hide" : <SearchButton />}
         </button> */}
@@ -40,6 +39,7 @@ const TeachingPage = () => {
           {showAddPost ? "Hide" : <AddButton text="Post" />}
         </button>
         {showAddPost && <AddTeachingPost setShowAddTeaching={setShowAddPost} />}
+        <TeachingEntries />
       </div>
     </div>
   );
